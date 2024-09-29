@@ -7,6 +7,7 @@
 
 ### Links
 - https://vercel.com/templates/next.js/mongodb-starter
+- https://www.youtube.com/watch?v=IeM1PGqmJT4&t=161s
 
 ### TODO: 
 - try to get this onto Vercel

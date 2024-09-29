@@ -3,11 +3,13 @@
 ### Setup
 
 - For Mongodb connection, add a `.env` file to root directory with MONGODB_URI and PORT values
-- Run `npm install`
+- Run `npm install` to install all the dependencies for the application
+- Run `npm start` to start nodemon so the application restarts with each file change
 
 ### TODO
 
 - Add middleware to handle errors and unknown routes, use next(err)
+- implement or remove redis caching
 
 ### Done
 

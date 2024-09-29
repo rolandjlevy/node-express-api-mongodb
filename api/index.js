@@ -1,6 +1,6 @@
 const express = require("express");
 const sanitizeHtml = require("sanitize-html");
-const connectDB = require("../connectMongo");
+const connectMongodb = require("../connectMongodb");
 require("dotenv").config();
 const path = require("path");
 const SliderModel = require("../models/slider");
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 3000;
 
-connectDB();
+connectMongodb();
 
 app.get("/", (req, res) => {
   const filePath = path.join(__dirname, "..", "public", "index.html");
@@ -27,7 +27,7 @@ app.get("/api/sliders", async (req, res) => {
   const {
     limit = 20,
     orderBy = "id",
-    sortBy = "desc",
+    sortBy = "asc",
     keyword,
     page,
   } = req.query;
@@ -48,14 +48,13 @@ app.get("/api/sliders", async (req, res) => {
       .sort({ [orderBy]: sortBy });
 
     const totalItems = await SliderModel.countDocuments(query);
-
     const currentPage = pageNo < totalItems ? pageNo : totalItems;
 
     const response = {
-      pageLimit,
       currentPage,
-      totalItems,
       totalPages: Math.ceil(totalItems / pageLimit),
+      totalItems,
+      pageLimit,
       data,
     };
     return res.status(200).json(response);

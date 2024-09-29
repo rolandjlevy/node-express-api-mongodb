@@ -1,10 +1,12 @@
 # Node / Express API with MongoDb
 
+### Setup
+
+- For Mongodb connection, add a `.env` file to root directory with MONGODB_URI and PORT values
+- Run `npm install`
+
 ### TODO
 
-- Add /add-slider-score endpoint to /api/sliders:
-  - see /api/routes.js in express-portfolio-api
-  - https://github.com/rolandjlevy/express-portfolio-api/blob/master/api/routes.js
 - Add middleware to handle errors and unknown routes, use next(err)
 
 ### Done
@@ -12,6 +14,9 @@
 - Deleted all scores with an id > 700 after the XSS attack by Raj 2023-05-13
 - In Mongodb Compass used this filter in : `{ id: { $gte: 700 } }`
 - Added an html page which does pagination for sliders scores
+- Add /add-slider-score endpoint to /api/sliders:
+  - see /api/routes.js in express-portfolio-api
+  - https://github.com/rolandjlevy/express-portfolio-api/blob/master/api/routes.js
 
 ### Notes
 

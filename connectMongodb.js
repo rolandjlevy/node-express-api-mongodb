@@ -1,6 +1,6 @@
 const { connect, set } = require("mongoose");
 
-const connectDB = async () => {
+const connectMongodb = async () => {
   try {
     if (!process.env.MONGODB_URI) {
       throw new Error("Invalid / Missing environment variable: MONGODB_URI");
@@ -14,4 +14,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectMongodb;

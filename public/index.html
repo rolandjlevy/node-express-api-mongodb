@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Node / Express API</title>
-</head>
-<body>
-  <h1>Node / Express API</h1>
-  <h3>Explore Sliders scores</h3>
-  <form action="/api/sliders" method="GET" name="explore-sliders-scores">
-    <label for="pageNumber">Enter Page Number:</label>
-    <input type="number" id="pageNumber" name="page" min="1" required>
-    <button type="submit">Go to Page</button>
-  </form>
-  <h3>Add a score to Sliders</h3>
-  <form action="/api/sliders" method="post" name="add-sliders-score">
-    <label for="username">User name</label>
-    <input type="text" id="userName" name="userName" required>
-    <label for="score">Score</label>
-    <input type="number" id="score" name="score" required>
-    <button type="submit">Add score</button>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node / Express API</title>
+    <style>
+      button[type="submit"]:disabled {
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Node / Express API</h1>
+    <section style="margin-bottom: 40px">
+      <h3>Explore Sliders scores</h3>
+      <form action="/api/sliders" method="GET" name="explore-sliders-scores">
+        <label for="pageNumber">Page Number:</label>
+        <input
+          type="number"
+          id="pageNumber"
+          name="page"
+          min="1"
+          required
+          pattern="^(?!\d+$)"
+          oninput="validateForm([this.id], 'submitViewScore')"
+        />
+        <button type="submit" id="submitViewScore">Go to Page</button>
+      </form>
+    </section>
+    <section>
+      <h3>Add a score to Sliders</h3>
+      <form action="/api/sliders" method="post" name="add-sliders-score">
+        <div style="margin-bottom: 10px">
+          <label for="username">User name</label>
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            required
+            pattern="\S.*"
+            oninput="validateForm(['userName', 'score'], 'submitScore');"
+          />
+        </div>
+        <div style="margin-bottom: 10px">
+          <label for="score">Score</label>
+          <input
+            type="number"
+            id="score"
+            name="score"
+            required
+            pattern="^(?!\d+$)"
+            oninput="validateForm(['userName', 'score'], 'submitScore');"
+          />
+        </div>
+        <button type="submit" id="submitScore">Add score</button>
+      </form>
+    </section>
+    <script>
+      const $ = (elem) => document.querySelector(elem);
+      const validateForm = (inputIds, buttonId) => {
+        $(`#${buttonId}`).disabled = !inputIds.every((id) =>
+          $(`#${id}`).checkValidity()
+        );
+      };
+      validateForm(["pageNumber"], "submitViewScore");
+      validateForm(["userName", "score"], "submitScore");
+    </script>
+  </body>
 </html>

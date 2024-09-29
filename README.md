@@ -1,14 +1,24 @@
 # Node / Express API with MongoDb
 
+### TODO
+
+- Add an html page which does pagination for sliders scores
+- Add /add-slider-score endpoint to /api/sliders:
+  - see /api/routes.js in express-portfolio-api
+  - https://github.com/rolandjlevy/express-portfolio-api/blob/master/api/routes.js
+- Add middleware to handle errors and unknown routes
+
 ### Notes
+
 - This repo is based on project:
   - Repo: https://github.com/nhndev/node-mongodb-api.git
   - Video: https://youtu.be/D7lDiFWF_vA?si=H7hrWcMxA5hfEkfx
 - Offical guide to using Express with Vercel:
   - Article: https://vercel.com/guides/using-express-with-vercel
-  - Video with Stephie: https://www.youtube.com/watch?v=wmYDRPH_kCo 
+  - Video with Stephie: https://www.youtube.com/watch?v=wmYDRPH_kCo
 
 ### Links
+
 - https://vercel.com/templates/next.js/mongodb-starter
 - https://www.youtube.com/watch?v=IeM1PGqmJT4&t=161s
 
@@ -20,15 +30,15 @@ previous vercel.json settings:
 {
   "version": 2,
   "builds": [
-      {
-        "src": "./index.js",
-        "use": "@vercel/node"
-      }
-    ],
+    {
+      "src": "./index.js",
+      "use": "@vercel/node"
+    }
+  ],
   "rewrites": [
-    { 
-      "source": "/(.*)", 
-      "destination": "/api" 
+    {
+      "source": "/(.*)",
+      "destination": "/api"
     }
   ],
   "routes": [
@@ -42,3 +52,4 @@ previous vercel.json settings:
     }
   ]
 }
+```

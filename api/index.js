@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
+const errorHandler = (error, res) => {
+  console.error("Global Error Handler:", error);
+  res.status(500).json({ error, message: "Internal Server Error" });
+};
+
 app.get("/", (req, res) => {
   const filePath = path.join(__dirname, "..", "public", "index.html");
   res.sendFile(filePath);

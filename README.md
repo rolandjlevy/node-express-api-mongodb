@@ -1,3 +1,3 @@
 # Node / Express API with MongoDb
 
-- https://github.com/nhndev/node-mongodb-api.git
+- This repo is based on https://github.com/nhndev/node-mongodb-api.git

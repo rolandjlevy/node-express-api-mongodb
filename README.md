@@ -11,3 +11,34 @@
 
 ### TODO: 
 - try to get this onto Vercel
+
+### Code snippets
+
+vercel.json settings:
+
+```json
+{
+  "version": 2,
+  "builds": [
+      {
+        "src": "./index.js",
+        "use": "@vercel/node"
+      }
+    ],
+  "rewrites": [
+    { 
+      "source": "/(.*)", 
+      "destination": "/api" 
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/api/sliders",
+      "dest": "/api/sliders"
+    }
+  ]
+}

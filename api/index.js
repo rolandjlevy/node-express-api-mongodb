@@ -1,16 +1,23 @@
 const express = require("express");
 const connectDB = require("../connectMongo");
 require("dotenv").config();
-const SliderModel = require("./models/slider");
+const path = require("path");
+const SliderModel = require("../models/slider");
 
 const app = express();
 app.use(express.json());
 
+const PORT = process.env.PORT || 3000;
+
 connectDB();
 
 app.get("/", (req, res) => {
-  const filePath = __dirname + "/public/index.html";
+  const filePath = path.join(__dirname, "..", "public", "index.html");
   res.sendFile(filePath);
+});
+
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello world" });
 });
 
 app.get("/api/sliders", async (req, res) => {
@@ -187,8 +194,6 @@ app.get("/api/sliders", async (req, res) => {
 //     });
 //   }
 // });
-
-const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);

@@ -14,7 +14,7 @@
 
 ### Code snippets
 
-vercel.json settings:
+previous vercel.json settings:
 
 ```json
 {

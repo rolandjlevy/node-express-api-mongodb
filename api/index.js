@@ -13,11 +13,6 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
-const errorHandler = (error, res) => {
-  console.error("Global Error Handler:", error);
-  res.status(500).json({ error, message: "Internal Server Error" });
-};
-
 app.get("/", (req, res) => {
   const filePath = path.join(__dirname, "..", "public", "index.html");
   res.sendFile(filePath);
@@ -27,6 +22,7 @@ app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello world" });
 });
 
+// get scores with pagination
 app.get("/api/sliders", async (req, res) => {
   const {
     limit = 20,
@@ -70,6 +66,7 @@ app.get("/api/sliders", async (req, res) => {
   }
 });
 
+// add a score
 app.post("/api/sliders", async (req, res) => {
   let { userName, score } = req.body;
   userName = sanitizeHtml(userName);
@@ -92,6 +89,11 @@ app.post("/api/sliders", async (req, res) => {
     });
   }
 });
+
+const errorHandler = (error, res) => {
+  console.error("Global Error Handler:", error);
+  res.status(500).json({ error, message: "Internal Server Error" });
+};
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);

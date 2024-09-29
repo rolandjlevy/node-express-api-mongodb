@@ -18,6 +18,10 @@
       "dest": "/public/$1"
     },
     {
+        "src": "/(.*)",
+        "dest": "/"
+      },
+    {
       "src": "/api/sliders",
       "dest": "/api/sliders"
     }

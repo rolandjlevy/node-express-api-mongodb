@@ -1,4 +1,5 @@
 const express = require("express");
+const sanitizeHtml = require("sanitize-html");
 const connectDB = require("../connectMongo");
 require("dotenv").config();
 const path = require("path");
@@ -6,6 +7,7 @@ const SliderModel = require("../models/slider");
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 3000;
 
@@ -63,7 +65,30 @@ app.get("/api/sliders", async (req, res) => {
     return res.status(200).json(response);
   } catch (error) {
     return res.status(500).json({
-      msg: error.message,
+      message: error.message,
+    });
+  }
+});
+
+app.post("/api/sliders", async (req, res) => {
+  let { userName, score } = req.body;
+  userName = sanitizeHtml(userName);
+  score = sanitizeHtml(parseInt(score));
+  const scores = await SliderModel.find();
+  const lastId = Math.max(...scores.map((user) => user.id), 0);
+  try {
+    const values = {
+      id: lastId + 1,
+      user_name: userName,
+      score,
+    };
+    const newSliderScore = new SliderModel(values);
+    const response = await newSliderScore.save();
+    const message = `New score for sliders has been saved`;
+    res.json({ message, response });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
     });
   }
 });

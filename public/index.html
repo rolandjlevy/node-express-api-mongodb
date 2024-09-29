@@ -7,11 +7,19 @@
 </head>
 <body>
   <h1>Node / Express API</h1>
-  <h3>Navigate to Sliders Page</h3>
-  <form action="/api/sliders" method="GET">
+  <h3>Explore Sliders scores</h3>
+  <form action="/api/sliders" method="GET" name="explore-sliders-scores">
     <label for="pageNumber">Enter Page Number:</label>
     <input type="number" id="pageNumber" name="page" min="1" required>
     <button type="submit">Go to Page</button>
+  </form>
+  <h3>Add a score to Sliders</h3>
+  <form action="/api/sliders" method="post" name="add-sliders-score">
+    <label for="username">User name</label>
+    <input type="text" id="userName" name="userName" required>
+    <label for="score">Score</label>
+    <input type="number" id="score" name="score" required>
+    <button type="submit">Add score</button>
   </form>
 </body>
 </html>

@@ -5,7 +5,7 @@
 - Add /add-slider-score endpoint to /api/sliders:
   - see /api/routes.js in express-portfolio-api
   - https://github.com/rolandjlevy/express-portfolio-api/blob/master/api/routes.js
-- Add middleware to handle errors and unknown routes
+- Add middleware to handle errors and unknown routes, use next(err)
 
 ### Done
 

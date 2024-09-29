@@ -7,7 +7,11 @@
 </head>
 <body>
   <h1>Node / Express API</h1>
-  <p><a href="/api/sliders">View Sliders scores</a></p>
-  <p><a href="/api/hello">Hello</a></p>
+  <h3>Navigate to Sliders Page</h3>
+  <form action="/api/sliders" method="GET">
+    <label for="pageNumber">Enter Page Number:</label>
+    <input type="number" id="pageNumber" name="page" min="1" required>
+    <button type="submit">Go to Page</button>
+  </form>
 </body>
 </html>

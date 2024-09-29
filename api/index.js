@@ -27,7 +27,7 @@ app.get("/api/hello", (req, res) => {
 
 app.get("/api/sliders", async (req, res) => {
   const {
-    limit = 10,
+    limit = 20,
     orderBy = "id",
     sortBy = "desc",
     keyword,
@@ -48,18 +48,17 @@ app.get("/api/sliders", async (req, res) => {
       .skip(skip)
       .limit(pageLimit)
       .sort({ [orderBy]: sortBy });
-      
+
     const totalItems = await SliderModel.countDocuments(query);
 
     const currentPage = pageNo < totalItems ? pageNo : totalItems;
 
     const response = {
-      msg: "Ok",
-      data,
-      totalItems,
-      totalPages: Math.ceil(totalItems / pageLimit),
       pageLimit,
       currentPage,
+      totalItems,
+      totalPages: Math.ceil(totalItems / pageLimit),
+      data,
     };
     return res.status(200).json(response);
   } catch (error) {

@@ -1,16 +1,16 @@
 # Node / Express API with MongoDb
 
 ### Notes
-- This repo is based on https://github.com/nhndev/node-mongodb-api.git
-- Using Express with Vercel: https://vercel.com/guides/using-express-with-vercel
-- Deploy Express.js on Vercel: https://www.youtube.com/watch?v=wmYDRPH_kCo
+- This repo is based on project:
+  - Repo: https://github.com/nhndev/node-mongodb-api.git
+  - Video: https://youtu.be/D7lDiFWF_vA?si=H7hrWcMxA5hfEkfx
+- Offical guide to using Express with Vercel:
+  - Article: https://vercel.com/guides/using-express-with-vercel
+  - Video with Stephie: https://www.youtube.com/watch?v=wmYDRPH_kCo 
 
 ### Links
 - https://vercel.com/templates/next.js/mongodb-starter
 - https://www.youtube.com/watch?v=IeM1PGqmJT4&t=161s
-
-### TODO: 
-- try to get this onto Vercel
 
 ### Code snippets
 

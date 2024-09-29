@@ -2,13 +2,16 @@
 
 ### TODO
 
-- In Mongodb delete all scores are on or after 2023-05-13
-- someone called Raj used onerroralert to do an SSO attack
-- Add an html page which does pagination for sliders scores
 - Add /add-slider-score endpoint to /api/sliders:
   - see /api/routes.js in express-portfolio-api
   - https://github.com/rolandjlevy/express-portfolio-api/blob/master/api/routes.js
 - Add middleware to handle errors and unknown routes
+
+### Done
+
+- Deleted all scores with an id > 700 after the XSS attack by Raj 2023-05-13
+- In Mongodb Compass used this filter in : `{ id: { $gte: 700 } }`
+- Added an html page which does pagination for sliders scores
 
 ### Notes
 

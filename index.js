@@ -1,25 +1,23 @@
 const express = require("express");
-const app = express();
-require("dotenv").config();
-
-app.use(express.json());
 const connectDB = require("./connectMongo");
-connectDB();
-
+require("dotenv").config();
 const SliderModel = require("./models/slider");
 
+const app = express();
+app.use(express.json());
 
-app.get("/", async (req, res) => {
-  const filePath = __dirname + '/public/index.html'
-  console.log(filePath)
+connectDB();
+
+app.get("/", (req, res) => {
+  const filePath = __dirname + "/public/index.html";
   res.sendFile(filePath);
-})
+});
 
 app.get("/api/sliders", async (req, res) => {
   const { limit = 10, orderBy = "id", sortBy = "desc", keyword } = req.query;
   let page = +req.query?.page;
   if (!page || page <= 0) page = 1;
-  const skip = (page - 1) * + limit;
+  const skip = (page - 1) * +limit;
   const query = {};
 
   if (keyword) {
@@ -40,7 +38,7 @@ app.get("/api/sliders", async (req, res) => {
       totalPages: Math.ceil(totalItems / limit),
       limit: +limit,
       currentPage: page,
-    }
+    };
     return res.status(200).json(response);
   } catch (error) {
     return res.status(500).json({
@@ -48,7 +46,6 @@ app.get("/api/sliders", async (req, res) => {
     });
   }
 });
-
 
 // const BookModel = require("./models/book.model");
 

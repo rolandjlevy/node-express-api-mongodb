@@ -6,7 +6,12 @@
 - Run `npm install` to install all the dependencies for the application
 - Run `npm start` to start nodemon so the application restarts with each file change
 
+### Using Vercel CLI
 
+- To replicate the Vercel deployed environment locally
+  - Install the Vercel CLI: `npm i -g vercel`
+  - Login to Vercel: `vercel login`
+  - Run locally: `vercel dev`
 
 ### TODO
 

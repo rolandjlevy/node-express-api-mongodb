@@ -1,25 +1,27 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const sanitizeHtml = require("sanitize-html");
-const SliderModel = require("./models/slider");
+const sanitizeHtml = require('sanitize-html');
+const SliderModel = require('./models/slider');
 
 // get scores with pagination
-router.get("/sliders", async (req, res) => {
+router.get('/sliders', async (req, res) => {
   const {
     limit = 20,
-    orderBy = "id",
-    sortBy = "asc",
+    orderBy = 'id',
+    sortBy = 'asc',
     keyword,
-    page,
+    page
   } = req.query;
   const pageLimit = Number(limit);
   let pageNo = Number(page);
-  if (!pageNo || pageNo <= 0) pageNo = 1;
+  if (!pageNo || pageNo <= 0) {
+    pageNo = 1;
+  }
   const skip = (pageNo - 1) * pageLimit;
   const query = {};
 
   if (keyword) {
-    query.name = { $regex: keyword, $options: "i" };
+    query.name = { $regex: keyword, $options: 'i' };
   }
 
   try {
@@ -36,18 +38,18 @@ router.get("/sliders", async (req, res) => {
       totalPages: Math.ceil(totalItems / pageLimit),
       totalItems,
       pageLimit,
-      data,
+      data
     };
     return res.status(200).json(response);
   } catch (error) {
     return res.status(500).json({
-      message: error.message,
+      message: error.message
     });
   }
 });
 
 // add a score
-router.post("/sliders", async (req, res) => {
+router.post('/sliders', async (req, res) => {
   let { userName, score } = req.body;
   userName = sanitizeHtml(userName);
   score = sanitizeHtml(parseInt(score));
@@ -57,15 +59,15 @@ router.post("/sliders", async (req, res) => {
     const values = {
       id: lastId + 1,
       user_name: userName,
-      score,
+      score
     };
     const newSliderScore = new SliderModel(values);
     const response = await newSliderScore.save();
     const message = `New score for sliders has been saved`;
-    res.json({ message, response });
+    return res.json({ message, response });
   } catch (err) {
     return res.status(500).json({
-      message: err.message,
+      message: err.message
     });
   }
 });

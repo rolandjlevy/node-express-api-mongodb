@@ -15,6 +15,7 @@
 
 ### TODO
 
+- specify domains allowed by CORs
 - Add middleware to handle errors and unknown routes, use next(err)
 - implement or remove redis caching
 

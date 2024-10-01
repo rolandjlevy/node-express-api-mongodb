@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const sanitizeHtml = require('sanitize-html');
+const connectMongodb = require('./connectMongodb');
 const SliderModel = require('./models/slider');
+
+(async () => {
+  await connectMongodb();
+})();
 
 // get scores with pagination
 router.get('/sliders', async (req, res) => {

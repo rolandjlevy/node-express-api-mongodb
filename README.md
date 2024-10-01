@@ -38,7 +38,7 @@
 
 ### Links
 
-- View deno: https://node-express-api-mongodb.vercel.app
+- View demo hosted on Vercel: [node-express-api-mongodb.vercel.app](https://node-express-api-mongodb.vercel.app/api/sliders?page=1)
 - https://vercel.com/templates/next.js/mongodb-starter
 - https://www.youtube.com/watch?v=IeM1PGqmJT4&t=161s
 - https://dev.to/vyan/how-to-deploy-your-backend-on-vercel-using-verceljson-a-step-by-step-guide-5a78
